@@ -387,7 +387,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         ctxt = o
         frame = ctxt.frame
         nenv = ctxt.sym
-        sym = self.lookup(ast.name, nenv, lambda x: x.name)
+        sym = self.lookupCase(ast.name, nenv, lambda x: x.name)
         if sym is None:
             print(ast.name)
         if type(sym.mtype) is ArrayType:
@@ -417,7 +417,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             return self.visitWriteArray(ast.lhs, _right, o)
         elif type(ast.lhs) is Id:
             nenv = ctxt.sym
-            sym = self.lookup(ast.lhs.name, nenv, lambda x: x.name)
+            sym = self.lookupCase(ast.lhs.name, nenv, lambda x: x.name)
             ad = ''
             if type(_right[1]) is IntType and type(sym.mtype) is FloatType:
                 ad = self.emit.emitI2F(frame)
@@ -500,7 +500,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         frame.enterLoop()
 
         nenv = ctxt.sym
-        sym = self.lookup(ast.id.name, nenv, lambda x: x.name)
+        sym = self.lookupCase(ast.id.name, nenv, lambda x: x.name)
         exp1 = self.visit(ast.expr1, ctxt)
         exp2 = self.visit(ast.expr2, ctxt)
 
@@ -567,7 +567,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         ctxt = o
         frame = ctxt.frame
         nenv = ctxt.sym
-        sym = self.lookup(ast.method.name, nenv, lambda x: x.name)
+        sym = self.lookupCase(ast.method.name, nenv, lambda x: x.name)
         cname = sym.value.value
     
         ctype = sym.mtype
@@ -653,6 +653,12 @@ class CodeGenVisitor(BaseVisitor, Utils):
         arrayType = self.visit(ast.arr, o)  # array_ref, arrayType
         indexCode = self.emit.emitPUSHCONST(arrayType[1].lower, IntType(), frame) + self.visit(ast.idx, o)[0] + self.emit.emitADDOP('-', IntType(), frame) + self.emit.jvm.emitINEG()
         return arrayType[0] + indexCode + value[0] + self.emit.jvm.emitIASTORE()
+
+    def lookupCase(self, lexeme, lst, func):
+        for sym in lst:
+            if func(sym).lower() == lexeme.lower():
+                return sym
+        return None
 
 
     
