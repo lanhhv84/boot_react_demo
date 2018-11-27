@@ -25,6 +25,8 @@ Label4:
 	bipush 10
 	if_icmpgt Label3
 	invokestatic MPClass/arrret()[I
+	invokestatic MPClass/arrret()[I
+	invokestatic MPClass/arrSum([I[I)[I
 	iconst_0
 	iload_1
 	isub
@@ -40,7 +42,7 @@ Label2:
 Label3:
 Label1:
 	return
-.limit stack 6
+.limit stack 7
 .limit locals 2
 .end method
 

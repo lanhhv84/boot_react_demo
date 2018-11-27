@@ -18,22 +18,23 @@ Label1:
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 .var 1 is i I from Label0 to Label1
 Label0:
-	invokestatic MPClass/arrret()I
+	iconst_2
+	istore_1
+Label4:
+	iload_1
+	bipush 10
+	if_icmpgt Label3
+	iload_1
 	invokestatic io/putInt(I)V
+Label2:
+	iload_1
+	iconst_1
+	iadd
+	istore_1
+	goto Label4
+Label3:
 Label1:
 	return
-.limit stack 1
+.limit stack 3
 .limit locals 2
-.end method
-
-.method public static arrret()I
-.var 0 is i I from Label0 to Label1
-Label0:
-	iconst_2
-	istore_0
-	iload_0
-	ireturn
-Label1:
-.limit stack 2
-.limit locals 1
 .end method

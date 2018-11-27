@@ -134,12 +134,13 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         for x in ast.decl:
             if type(x) is FuncDecl:
-                e = self.visit(x, e)
+                self.visit(x, SubBody(None, e.sym.copy()))
 
         self.emit.emitEPILOG()
         return c
 
     def genMETHOD(self, consdecl, o, frame):
+        
         #consdecl: FuncDecl
         #o: Any
         #frame: Frame
@@ -179,7 +180,6 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         for var in consdecl.local:
             sym = self.visit(var, (frame, True))
-            print(sym.value.value, sym.name)
             glenv += [sym]
             if type(sym.mtype) != ArrayType:
                 self.emit.printout(self.emit.emitVAR(sym.value.value, sym.name, sym.mtype, frame.getStartLabel(), frame.getEndLabel(), frame))
@@ -387,9 +387,6 @@ class CodeGenVisitor(BaseVisitor, Utils):
         ctxt = o
         frame = ctxt.frame
         nenv = ctxt.sym
-        print('List: ')
-        for s in ctxt.sym:
-            print(s.name, s.value.value)
         sym = self.lookup(ast.name, nenv, lambda x: x.name)
         if sym is None:
             print(ast.name)

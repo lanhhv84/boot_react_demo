@@ -8,8 +8,7 @@
         function arrret(): integer;
         var i: integer;
         begin
-            for i := 1 to 10 do
-                putInt(i);
+            i := 2;
             return i;
         end
         

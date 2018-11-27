@@ -18,14 +18,16 @@ Label1:
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 .var 1 is i I from Label0 to Label1
 Label0:
-	iconst_0
+	iconst_1
 	istore_1
 Label4:
 	iload_1
 	bipush 10
 	if_icmpgt Label3
 	invokestatic MPClass/arrret()[I
-	iconst_0
+	invokestatic MPClass/arrret()[I
+	invokestatic MPClass/arrSum([I[I)[I
+	iconst_1
 	iload_1
 	isub
 	ineg
@@ -40,35 +42,35 @@ Label2:
 Label3:
 Label1:
 	return
-.limit stack 6
+.limit stack 7
 .limit locals 2
 .end method
 
 .method public static arrSum([I[I)[I
-	ldc 11
+	ldc 10
 	newarray int
 	astore_2
 .var 3 is i I from Label0 to Label1
 Label0:
-	iconst_0
+	iconst_1
 	istore_3
 Label4:
 	iload_3
 	bipush 10
 	if_icmpgt Label3
 	aload_2
-	iconst_0
+	iconst_1
 	iload_3
 	isub
 	ineg
 	aload_0
-	iconst_0
+	iconst_1
 	iload_3
 	isub
 	ineg
 	iaload
 	aload_1
-	iconst_0
+	iconst_1
 	iload_3
 	isub
 	ineg
@@ -91,18 +93,18 @@ Label1:
 
 .method public static arrret()[I
 .var 0 is i I from Label0 to Label1
-	ldc 11
+	ldc 10
 	newarray int
 	astore_1
 Label0:
-	iconst_0
+	iconst_1
 	istore_0
 Label4:
 	iload_0
 	bipush 10
 	if_icmpgt Label3
 	aload_1
-	iconst_0
+	iconst_1
 	iload_0
 	isub
 	ineg
