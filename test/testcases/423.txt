@@ -1,0 +1,13 @@
+
+        var hxhx: integer;
+        procedure main();
+        begin
+            hxhx := 69;
+            ts(hxhx);
+        end
+
+        procedure ts(a: integer);
+        begin
+            putInt(a);
+        end
+        

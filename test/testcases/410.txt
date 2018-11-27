@@ -1,0 +1,14 @@
+
+        procedure main();
+        var a: integer;
+        begin
+            a := 10;
+            while (a > 0) do
+            begin
+                if (a = 5) then
+                    break;
+                a := a - 1;
+                putInt(a);
+            end
+        end
+        

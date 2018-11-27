@@ -1,0 +1,15 @@
+
+        procedure main();
+        var ar: array [99 .. 102] of integer;
+            ind: integer;
+        begin
+            ind := 101;
+            ar[ind] := 69;
+            main2(ar, ind);
+        end
+
+        procedure main2(arr: array [99 .. 102] of integer; a: integer);
+        begin
+            putInt(arr[a]);
+        end
+        

@@ -1,0 +1,15 @@
+
+        procedure main();
+        var i: integer;
+        begin
+            putInt(arrret());
+        end
+
+        function arrret(): integer;
+        var i: integer;
+        begin
+            for i := 1 to 10 do
+                putInt(i);
+            return i;
+        end
+        

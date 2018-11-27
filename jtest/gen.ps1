@@ -1,0 +1,1 @@
+javac -g com/hvlpr/Main.java; java  -classpath "F:\Assignment4\v5\jtest;F:\Assignment4\v5\jtest\bcel-5.2.jar"  com.hvlpr.JasminVisitor com.hvlpr.Main

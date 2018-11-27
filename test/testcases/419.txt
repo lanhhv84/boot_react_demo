@@ -1,0 +1,16 @@
+
+        procedure main();
+        var a, b: integer;
+        begin
+            a := 3;
+            b := 3;
+            with a, b: integer; do
+                begin
+                    a := 10;
+                    b := 10;
+                end
+
+            putIntLn(a);
+            putIntLn(b);
+        end
+        
