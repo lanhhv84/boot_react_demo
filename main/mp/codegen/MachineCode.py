@@ -523,7 +523,7 @@ class JasminCode(MachineCode):
     
     def emitIFNE(self, label):
         #label: Int
-        return JasminCode.INDENT + "ifne Label" + str(label) + JasminCode.END
+        return JasminCode.INDENT + "ifne fcmpl" + str(label) + JasminCode.END
     
     def emitIFLT(self, label):
         #label: Int

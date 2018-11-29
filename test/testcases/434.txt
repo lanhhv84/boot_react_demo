@@ -1,0 +1,9 @@
+
+        procedure main();
+        begin
+            if (1.0 > 2.0) then
+                putInt(1);
+            else
+                putInt(2);
+        end
+        

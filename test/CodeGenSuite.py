@@ -588,7 +588,55 @@ class CheckCodeGenSuite(unittest.TestCase):
         exp = "2468101214161820"
         self.assertTrue(TestCodeGen.test(inp,exp,433))
 
+    def test_cmp_434(self):
+        inp = """
+        procedure main();
+        begin
+            if (1.0 > 2.0) then
+                putInt(1);
+            else
+                putInt(2);
+        end
+        """
+        exp = "2"
+        self.assertTrue(TestCodeGen.test(inp,exp,434))
 
+    def test_cmp_435(self):
+        inp = """
+        procedure main();
+        begin
+            if (1 > 2) then
+                putInt(1);
+            else
+                putInt(2);
+        end
+        """
+        exp = "2"
+        self.assertTrue(TestCodeGen.test(inp,exp,435))
 
+    def test_arr_global_36(self):
+        inp = """
+        var hxhx: array [1 .. 10] of integer;
+        procedure main();
+        begin
+            hxhx[3] := 10;
+            putInt(hxhx[3]);
+        end
+        """
+        exp = "10"
+        self.assertTrue(TestCodeGen.test(inp,exp,436))
 
+    def test_shortcut_37(self):
+        inp = """
+        procedure main();
+        var b: array[0 .. 10] of integer;
+        begin
+            b[0] := 1 + 1*1;
+            putInt(b[0]);
+        end
+        """
+        exp = "2"
+        self.assertTrue(TestCodeGen.test(inp,exp,437))
+
+    
     

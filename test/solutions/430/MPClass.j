@@ -14,10 +14,18 @@ Label1:
 .limit locals 1
 .end method
 
+.method public static <clinit>()V
+Label0:
+Label1:
+	return
+.limit stack 0
+.limit locals 0
+.end method
+
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
-.var 1 is i I from Label0 to Label1
 Label0:
+.var 1 is i I from Label0 to Label1
 	iconst_0
 	istore_1
 Label4:
@@ -45,11 +53,11 @@ Label1:
 .end method
 
 .method public static arrSum([I[I)[I
+Label0:
 	ldc 11
 	newarray int
 	astore_2
 .var 3 is i I from Label0 to Label1
-Label0:
 	iconst_0
 	istore_3
 Label4:
@@ -83,18 +91,19 @@ Label2:
 	goto Label4
 Label3:
 	aload_2
-	areturn
+	goto Label1
 Label1:
-.limit stack 23
+	areturn
+.limit stack 20
 .limit locals 4
 .end method
 
 .method public static arrret()[I
+Label0:
 .var 0 is i I from Label0 to Label1
 	ldc 11
 	newarray int
 	astore_1
-Label0:
 	iconst_0
 	istore_0
 Label4:
@@ -116,8 +125,9 @@ Label2:
 	goto Label4
 Label3:
 	aload_1
-	areturn
+	goto Label1
 Label1:
-.limit stack 13
+	areturn
+.limit stack 12
 .limit locals 2
 .end method

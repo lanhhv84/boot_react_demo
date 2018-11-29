@@ -14,14 +14,22 @@ Label1:
 .limit locals 1
 .end method
 
+.method public static <clinit>()V
+Label0:
+Label1:
+	return
+.limit stack 0
+.limit locals 0
+.end method
+
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
+Label0:
 .var 1 is a I from Label0 to Label1
 .var 2 is b I from Label0 to Label1
 	ldc 2
 	newarray int
 	astore_3
-Label0:
 	aload_3
 	iconst_1
 	iconst_1
@@ -35,7 +43,7 @@ Label0:
 	invokestatic MPClass/returnArray(I)V
 Label1:
 	return
-.limit stack 11
+.limit stack 10
 .limit locals 4
 .end method
 

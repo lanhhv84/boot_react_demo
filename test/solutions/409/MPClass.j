@@ -14,23 +14,29 @@ Label1:
 .limit locals 1
 .end method
 
+.method public static <clinit>()V
+Label0:
+Label1:
+	return
+.limit stack 0
+.limit locals 0
+.end method
+
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
-.var 1 is a I from Label0 to Label1
 Label0:
+.var 1 is a I from Label0 to Label1
 	iconst_5
 	istore_1
 Label2:
 	iload_1
 	iconst_5
-	if_icmpeq Label5
-	goto Label4
-Label4:
+	if_icmpeq Label4
 	iconst_1
-	goto Label6
-Label5:
+	goto Label5
+Label4:
 	iconst_0
-Label6:
+Label5:
 	ifle Label3
 	iload_1
 	invokestatic io/putInt(I)V

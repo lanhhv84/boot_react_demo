@@ -1,14 +1,15 @@
 package com.hvlpr;
 public class Main {
-    public static void main( String[] args )
-    {   
-        System.out.println(arrret());
+    
+    public static void main(String[] args) {
+        int x = foo(3);
     }
-    public static int arrret() {
-        int i;
-        for (i = 1 ; i < 10 ; ++i) {
-            
+    public static int foo(int a) {
+        if (a > 1) {
+            return 1;
         }
-        return i;
+        else {
+            return 0;
+        }
     }
 }

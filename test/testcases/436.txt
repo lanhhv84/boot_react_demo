@@ -1,0 +1,8 @@
+
+        var hxhx: array [1 .. 10] of integer;
+        procedure main();
+        begin
+            hxhx[3] := 10;
+            putInt(hxhx[3]);
+        end
+        

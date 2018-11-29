@@ -14,41 +14,43 @@ Label1:
 .limit locals 1
 .end method
 
+.method public static <clinit>()V
+Label0:
+Label1:
+	return
+.limit stack 0
+.limit locals 0
+.end method
+
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
-.var 1 is a I from Label0 to Label1
 Label0:
+.var 1 is a I from Label0 to Label1
 	bipush 10
 	istore_1
 Label2:
 	iload_1
 	iconst_0
-	if_icmple Label11
-	goto Label10
-	goto Label10
-Label10:
+	if_icmple Label8
 	iconst_1
-	goto Label12
-Label11:
+	goto Label9
+Label8:
 	iconst_0
-Label12:
+Label9:
 	ifle Label3
 	iload_1
 	iconst_5
-	if_icmpne Label5
-	goto Label4
-Label4:
+	if_icmpne Label4
 	iconst_1
-	goto Label6
-Label5:
+	goto Label5
+Label4:
 	iconst_0
-Label6:
-	ifle Label8
-Label7:
+Label5:
+	ifle Label6
 	goto Label3
-	goto Label9
-Label8:
-Label9:
+	goto Label7
+Label6:
+Label7:
 	iload_1
 	iconst_1
 	isub

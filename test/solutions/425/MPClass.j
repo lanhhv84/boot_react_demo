@@ -14,13 +14,21 @@ Label1:
 .limit locals 1
 .end method
 
+.method public static <clinit>()V
+Label0:
+Label1:
+	return
+.limit stack 0
+.limit locals 0
+.end method
+
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
+Label0:
 	ldc 4
 	newarray int
 	astore_1
 .var 2 is ind I from Label0 to Label1
-Label0:
 	bipush 101
 	istore_2
 	aload_1
@@ -35,7 +43,7 @@ Label0:
 	invokestatic MPClass/main2([II)V
 Label1:
 	return
-.limit stack 14
+.limit stack 11
 .limit locals 3
 .end method
 
@@ -51,6 +59,6 @@ Label0:
 	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 6
+.limit stack 5
 .limit locals 2
 .end method
