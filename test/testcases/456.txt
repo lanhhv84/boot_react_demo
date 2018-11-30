@@ -1,0 +1,22 @@
+
+        function foo(): array [-2 .. 2] of string;
+        var x: array [-2 .. 2] of string;
+        i:integer;
+        begin
+            for i := -2 to 2 do
+                x[i] := "HELLO";
+            return x;
+        end
+
+        procedure printArray(a : array [-2 .. 2] of string);
+        var i:integer;
+        begin
+            for i := -2 to 2 do
+                putStringLn(a[i]);
+        end
+
+		procedure main();
+		begin
+            printArray(foo());
+		end
+		

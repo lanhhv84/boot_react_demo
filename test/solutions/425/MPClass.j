@@ -43,14 +43,71 @@ Label0:
 	invokestatic MPClass/main2([II)V
 Label1:
 	return
-.limit stack 11
+.limit stack 10
 .limit locals 3
 .end method
 
 .method public static main2([II)V
+.var 0 is arr [I from Label0 to Label1
 .var 1 is a I from Label0 to Label1
-Label0:
+.var 2 is arr_copy [I from Label0 to Label1
+	iconst_4
+	newarray int
+	astore_2
 	aload_0
+	aload_2
+	bipush 99
+	bipush 99
+	isub
+	ineg
+	aload_0
+	bipush 99
+	bipush 99
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_2
+	bipush 99
+	bipush 100
+	isub
+	ineg
+	aload_0
+	bipush 99
+	bipush 100
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_2
+	bipush 99
+	bipush 101
+	isub
+	ineg
+	aload_0
+	bipush 99
+	bipush 101
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_2
+	bipush 99
+	bipush 102
+	isub
+	ineg
+	aload_0
+	bipush 99
+	bipush 102
+	isub
+	ineg
+	iaload
+	iastore
+Label0:
+	aload_2
 	bipush 99
 	iload_1
 	isub
@@ -59,6 +116,6 @@ Label0:
 	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 5
-.limit locals 2
+.limit stack 20
+.limit locals 3
 .end method

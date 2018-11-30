@@ -1,0 +1,7 @@
+
+        var a : array [0 .. 4] of integer;
+
+        procedure main();
+        begin
+        end
+		

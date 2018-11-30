@@ -48,6 +48,6 @@ Label0:
 	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 11
+.limit stack 9
 .limit locals 2
 .end method

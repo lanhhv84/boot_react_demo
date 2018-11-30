@@ -1,0 +1,13 @@
+
+        procedure main();
+        var i:integer;
+        begin
+            i := 0;
+            while true do
+            begin
+                if i = 5 then break;
+                putInt(i);
+                i := i + 1;
+            end
+        end
+		

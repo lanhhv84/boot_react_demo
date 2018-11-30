@@ -50,7 +50,7 @@ class Emitter():
         #in: Int or Sring
         #frame: Frame
         
-        frame.push();
+        frame.push()
         if type(in_) is int:
             i = in_
             if i >= -1 and i <=5:
@@ -59,6 +59,8 @@ class Emitter():
                 return self.jvm.emitBIPUSH(i)
             elif i >= -32768 and i <= 32767:
                 return self.jvm.emitSIPUSH(i)
+            elif i >= -2147483647 and i <= 2147483647:
+                return self.jvm.emitLDC(str(i))
         elif type(in_) is str:
             if in_ == "true":
                 return self.emitPUSHICONST(1, frame)
@@ -485,7 +487,7 @@ class Emitter():
             if op == ">":
                 result.append(self.jvm.emitIFLE(falseLabel))
             elif op == ">=":
-                result.append(self.jvm.emitIFGT(falseLabel))
+                result.append(self.jvm.emitIFLT(falseLabel))
             elif op == "<":
                 result.append(self.jvm.emitIFGE(falseLabel))
             elif op == "<=":

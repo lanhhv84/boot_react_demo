@@ -43,7 +43,7 @@ Label0:
 	invokestatic MPClass/returnArray(I)V
 Label1:
 	return
-.limit stack 10
+.limit stack 9
 .limit locals 4
 .end method
 

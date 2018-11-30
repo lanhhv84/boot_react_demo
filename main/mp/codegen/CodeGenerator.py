@@ -97,6 +97,11 @@ class CName(Val):
         #value: String
         self.value = value
 
+class IntClass(Val):
+    def __init__(self, value, isLong=False):
+        #value: String
+        self.isLong = False
+
 
 
 class CodeGenVisitor(BaseVisitor, Utils):
@@ -186,8 +191,17 @@ class CodeGenVisitor(BaseVisitor, Utils):
         for var in consdecl.param:
             sym = self.visit(var, (frame, False))
             glenv = [sym] + glenv
-            if type(sym.mtype) != ArrayType:
-                self.emit.printout(self.emit.emitVAR(sym.value.value, sym.name, sym.mtype, frame.getStartLabel(), frame.getEndLabel(), frame))
+            self.emit.printout(self.emit.emitVAR(sym.value.value, sym.name, sym.mtype, frame.getStartLabel(), frame.getEndLabel(), frame))
+        if not glenv is None:
+            for sym in glenv[:len(consdecl.param)]:
+                if type(sym.mtype) is ArrayType:
+                    symCopy = Symbol(sym.name + "_copy", sym.mtype, Index(frame.getNewIndex()))
+                    self.emit.printout(self.emit.emitVAR(symCopy.value.value, symCopy.name, symCopy.mtype, frame.getStartLabel(), frame.getEndLabel(), frame))
+                    glenv = [symCopy] + glenv
+                    self.emit.printout(self.copyArray(sym, symCopy, SubBody(frame, glenv)))
+                    sym.value.value = symCopy.value.value
+                    glenv = glenv[1: ]
+
 
         body = consdecl.body
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
@@ -214,10 +228,12 @@ class CodeGenVisitor(BaseVisitor, Utils):
         list(map(lambda x: self.emit.printout(self.visit(x, SubBody(frame, glenv))), body))
 
         self.emit.printout(self.emit.emitLABEL(frame.getEndLabel(), frame))
-        if type(returnType) is ArrayType:
+        # Return statement
+        if type(returnType) is ArrayType or type(returnType) is StringType:
             self.emit.printout(self.emit.jvm.emitARETURN())
         else:
             self.emit.printout(self.emit.emitRETURN(returnType, frame))
+        # End method
         self.emit.printout(self.emit.emitENDMETHOD(frame))
         frame.exitScope()
 
@@ -242,7 +258,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         ctxt = o
         frame = ctxt.frame
-        return self.emit.emitPUSHICONST(ast.value, frame), IntType()
+        return self.emit.emitPUSHCONST(ast.value, IntType(), frame), IntType()
 
     def visitFloatLiteral(self, ast, o):
         #ast: FloatLiteral
@@ -421,7 +437,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         nenv = ctxt.sym
         sym = self.lookupCase(ast.name, nenv, lambda x: x.name)
         if sym is None:
-            print(ast.name)
+            pass
         elif type(sym.value) is Index:
             if type(sym.mtype) is ArrayType:
                 refCode = self.emit.emitREADVAR(sym.name, ArrayPointerType(sym.mtype.eleType), sym.value.value, frame)
@@ -616,14 +632,14 @@ class CodeGenVisitor(BaseVisitor, Utils):
         code = ''
         for ind, x in enumerate(ast.param):
             str1, typ1 = self.visit(x, Access(frame, nenv, False, True))
-            # import pdb
-            # pdb.set_trace()
             if type(str1) is tuple:
                 in_ = (in_[0] + str1[0], in_[1] + [typ1]) 
             else:
                 if type(typ1) is IntType and type(sym.mtype.partype[ind]) is FloatType:
                     in_ = (in_[0] + str1 + self.emit.emitI2F(frame), in_[1] + [typ1])
                 else:
+                    # if type(typ1) is ArrayType:
+                    #     str1 = self.copyArray(typ1, frame)
                     in_ = (in_[0] + str1, in_[1] + [typ1])
         code = in_[0] + self.emit.emitINVOKESTATIC(cname + "/" + sym.name, ctype, frame), sym
         return code
@@ -667,17 +683,18 @@ class CodeGenVisitor(BaseVisitor, Utils):
     def visitArrayCell(self, ast, o):
         #arr:Expr
         #idx:Expr
-        index = self.visit(ast.idx, o)
         # TODO: Type inference
-        return self.visitReadArray(ast, index, o), self.visit(ast.arr, o)[1].eleType
+        return self.visitReadArray(ast, o), self.visit(ast.arr, o)[1].eleType
 
     def visitReverse(self, typ, frame):
         if type(typ) is BoolType:
             return  self.emit.emitPUSHICONST(1, frame) + self.emit.emitADDOP('-', IntType(), frame) + self.emit.jvm.emitINEG(), BoolType()
-        else:
+        elif type(typ) is IntType:
             return self.emit.jvm.emitINEG()
+        else:
+            return self.emit.jvm.emitFNEG()
 
-    def visitReadArray(self, ast, value, o):
+    def visitReadArray(self, ast, o):
         """
             Input: Array call
             Return: Value on top of stack
@@ -730,6 +747,26 @@ class CodeGenVisitor(BaseVisitor, Utils):
             return self.emit.emitREADVAR(sym.name, sym.mtype, sym.value.value, frame), sym.mtype
         else:
             return self.emit.emitGETSTATIC(sym.value.value + "/" + sym.name, sym.mtype, frame), sym.mtype
+
+    def copyArray(self, sym, symCopy, o):
+        """
+        input ArrayType
+        #lower:int
+        #upper:int
+        #eleType:Type
+        """
+        frame = o.frame
+        size = sym.mtype.upper - sym.mtype.lower + 1
+        if type(sym.mtype.eleType) is StringType:
+            createCode =  self.emit.jvm.emitANEWARRAY(self.emit.getFullType(sym.mtype.eleType)) 
+        else:
+            createCode =  self.emit.jvm.emitNEWARRAY(self.emit.getFullType(sym.mtype.eleType)) 
+        createCode = self.emit.emitPUSHICONST(size, frame) + createCode + self.emit.emitWRITEVAR(symCopy.name, ArrayPointerType(sym.mtype.eleType), symCopy.value.value, frame)
+        code = []
+        for index in range(sym.mtype.lower, sym.mtype.upper + 1):
+            sCode = self.visit(Id(sym.name), o)[0] + self.visitWriteArray(ArrayCell(Id(symCopy.name), IntLiteral(index)), (self.visitReadArray(ArrayCell(Id(sym.name), IntLiteral(index)), o), sym.mtype.eleType), o)
+            code.append(sCode)
+        return createCode + ''.join(code)
 
             
 

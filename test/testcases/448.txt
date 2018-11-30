@@ -1,0 +1,9 @@
+
+        procedure main();
+        begin
+            if false then
+                putBool(true);
+            else
+                putBool(false);
+        end
+        

@@ -50,54 +50,324 @@ Label2:
 Label3:
 Label1:
 	return
-.limit stack 6
+.limit stack 5
 .limit locals 2
 .end method
 
 .method public static arrSum([I[I)[I
-Label0:
-	ldc 10
+.var 0 is a [I from Label0 to Label1
+.var 1 is b [I from Label0 to Label1
+.var 2 is b_copy [I from Label0 to Label1
+	bipush 10
 	newarray int
 	astore_2
-.var 3 is i I from Label0 to Label1
-	iconst_1
-	istore_3
-Label4:
-	iload_3
-	bipush 10
-	if_icmpgt Label3
+	aload_1
 	aload_2
 	iconst_1
-	iload_3
+	iconst_1
+	isub
+	ineg
+	aload_1
+	iconst_1
+	iconst_1
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	iconst_2
+	isub
+	ineg
+	aload_1
+	iconst_1
+	iconst_2
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	iconst_3
+	isub
+	ineg
+	aload_1
+	iconst_1
+	iconst_3
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	iconst_4
+	isub
+	ineg
+	aload_1
+	iconst_1
+	iconst_4
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	iconst_5
+	isub
+	ineg
+	aload_1
+	iconst_1
+	iconst_5
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	bipush 6
+	isub
+	ineg
+	aload_1
+	iconst_1
+	bipush 6
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	bipush 7
+	isub
+	ineg
+	aload_1
+	iconst_1
+	bipush 7
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	bipush 8
+	isub
+	ineg
+	aload_1
+	iconst_1
+	bipush 8
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	bipush 9
+	isub
+	ineg
+	aload_1
+	iconst_1
+	bipush 9
+	isub
+	ineg
+	iaload
+	iastore
+	aload_1
+	aload_2
+	iconst_1
+	bipush 10
+	isub
+	ineg
+	aload_1
+	iconst_1
+	bipush 10
+	isub
+	ineg
+	iaload
+	iastore
+.var 3 is a_copy [I from Label0 to Label1
+	bipush 10
+	newarray int
+	astore_3
+	aload_0
+	aload_3
+	iconst_1
+	iconst_1
 	isub
 	ineg
 	aload_0
 	iconst_1
-	iload_3
+	iconst_1
 	isub
 	ineg
 	iaload
-	aload_1
+	iastore
+	aload_0
+	aload_3
 	iconst_1
-	iload_3
+	iconst_2
+	isub
+	ineg
+	aload_0
+	iconst_1
+	iconst_2
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	iconst_3
+	isub
+	ineg
+	aload_0
+	iconst_1
+	iconst_3
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	iconst_4
+	isub
+	ineg
+	aload_0
+	iconst_1
+	iconst_4
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	iconst_5
+	isub
+	ineg
+	aload_0
+	iconst_1
+	iconst_5
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	bipush 6
+	isub
+	ineg
+	aload_0
+	iconst_1
+	bipush 6
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	bipush 7
+	isub
+	ineg
+	aload_0
+	iconst_1
+	bipush 7
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	bipush 8
+	isub
+	ineg
+	aload_0
+	iconst_1
+	bipush 8
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	bipush 9
+	isub
+	ineg
+	aload_0
+	iconst_1
+	bipush 9
+	isub
+	ineg
+	iaload
+	iastore
+	aload_0
+	aload_3
+	iconst_1
+	bipush 10
+	isub
+	ineg
+	aload_0
+	iconst_1
+	bipush 10
+	isub
+	ineg
+	iaload
+	iastore
+Label0:
+	ldc 10
+	newarray int
+	astore 4
+.var 5 is i I from Label0 to Label1
+	iconst_1
+	istore 5
+Label4:
+	iload 5
+	bipush 10
+	if_icmpgt Label3
+	aload 4
+	iconst_1
+	iload 5
+	isub
+	ineg
+	aload_3
+	iconst_1
+	iload 5
+	isub
+	ineg
+	iaload
+	aload_2
+	iconst_1
+	iload 5
 	isub
 	ineg
 	iaload
 	iadd
 	iastore
 Label2:
-	iload_3
+	iload 5
 	iconst_1
 	iadd
-	istore_3
+	istore 5
 	goto Label4
 Label3:
-	aload_2
+	aload 4
 	goto Label1
 Label1:
 	areturn
-.limit stack 20
-.limit locals 4
+.limit stack 97
+.limit locals 6
 .end method
 
 .method public static arrret()[I
@@ -130,6 +400,6 @@ Label3:
 	goto Label1
 Label1:
 	areturn
-.limit stack 12
+.limit stack 11
 .limit locals 2
 .end method
