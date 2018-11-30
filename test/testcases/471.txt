@@ -1,0 +1,17 @@
+
+        procedure main();
+        var A, B: integer;
+        begin
+            a := 96;
+            b := 96;
+            with a, b: integer; do
+                begin
+                    a := 69;
+                    b := 69;
+                    putINT(A);
+                    putInt(B);
+                end
+            putInt(A);
+            putInt(B);
+        end
+        

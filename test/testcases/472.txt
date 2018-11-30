@@ -1,0 +1,22 @@
+
+        var XxX: integer;
+        procedure main();
+        var xXx: integer;
+        begin
+        xxx := 10;
+        with xxx: integer; do
+            begin
+            xxx := 100;
+            foo();
+            if (xxx > 10) then
+                putInt(10);
+            else
+                putInt(0);
+            end
+        end
+
+        procedure foo();
+        begin
+            xxx := 10;
+        end
+        

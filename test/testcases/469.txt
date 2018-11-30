@@ -1,0 +1,6 @@
+
+        procedure main();
+        begin
+            putiNt(100);
+        end
+        

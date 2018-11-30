@@ -450,7 +450,6 @@ class CodeGenVisitor(BaseVisitor, Utils):
     def visitAssign(self, ast,o):
         #lhs:Expr
         #exp:Expr
-        
         #_left = self.visit(ast.lhs)
         ctxt = o
         frame = ctxt.frame

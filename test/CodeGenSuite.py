@@ -1185,15 +1185,227 @@ class CheckCodeGenSuite(unittest.TestCase):
 #         expect = ""
 #         self.assertTrue(TestCodeGen.test(input, expect, 466))
 
-    def test_467(self):
+    # def test_467(self):
+    #     inp = """
+    #     procedure main();
+    #     begin
+    #         putBool(true or else (1 = (1/0)));
+    #     end
+    #     """
+    #     exp = "true"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 467))
+
+
+    # def test_468(self):
+    #     inp = """
+    #     procedure main();
+    #     begin
+    #         putBool(False and then (1 = (1/0)));
+    #     end
+    #     """
+    #     exp = "false"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 468))
+
+    # def test_469(self):
+    #     inp = """
+    #     procedure main();
+    #     begin
+    #         putiNt(100);
+    #     end
+    #     """
+    #     exp = "100"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 469))
+
+    # def test_470(self):
+    #     inp = """
+    #         var x: integer;
+    #         procedure main();
+    #         var x: integer;
+    #         begin
+    #             x := 2;
+    #             foo();
+    #             putInT(x);
+    #         end
+
+    #         procedure foo();
+    #         begin
+    #             x := 10;
+    #         end
+    #     """
+    #     exp = "2"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 470))
+
+    # def test_471(self):
+    #     inp = """
+    #     procedure main();
+    #     var A, B: integer;
+    #     begin
+    #         a := 96;
+    #         b := 96;
+    #         with a, b: integer; do
+    #             begin
+    #                 a := 69;
+    #                 b := 69;
+    #                 putINT(A);
+    #                 putInt(B);
+    #             end
+    #         putInt(A);
+    #         putInt(B);
+    #     end
+    #     """
+    #     exp = "69699696"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 471))
+
+    # def test_472(self):
+    #     inp = """
+    #     var XxX: integer;
+    #     procedure main();
+    #     var xXx: integer;
+    #     begin
+    #     xxx := 10;
+    #     with xxx: integer; do
+    #         begin
+    #         xxx := 100;
+    #         foo();
+    #         if (xxx > 10) then
+    #             putInt(10);
+    #         else
+    #             putInt(0);
+    #         end
+    #     end
+
+    #     procedure foo();
+    #     begin
+    #         xxx := 10;
+    #     end
+    #     """
+
+    #     exp = "10"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 472))
+
+    # def test_num_473(self):
+    #     inp = """
+    #     procedure main();
+    #     var a, b: integer;
+    #         c, d: integer;
+    #         e: real;
+    #     begin
+    #         a := -2147483647;
+    #         b := 2147483647;
+    #         c := 100;
+    #         d := 100;
+    #         e := 100;
+    #         putFloat(a + b);
+    #         putFloat(a/b);
+    #         putInt(a div b);
+    #         putFloat(c);
+    #         putFloat(d);
+    #         putFLoat(e);
+    #     end
+    #     """
+
+    #     exp = "0.0-1.0-1100.0100.0100.0"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 473))
+
+    # def test_bin_op_int_474(self):
+    #     inp = """
+    #     procedure main();
+    #     var a, b: integer;
+    #     begin
+    #         a := 69;
+    #         b := 96;
+    #         putInt(a + b);
+    #         putInt(a - b);
+    #         putInt(a div b);
+    #         putInt(a mod b);
+    #         putInt(a * b);
+    #         putBool(a < b);
+    #         putBool(a > b);
+    #         putBool(a <= b);
+    #         putBool(a >= b);
+    #         putBool(a <> b);
+    #         putBool(a = b);
+    #     end
+    #     """
+    #     exp = "165-270696624truefalsetruefalsetruefalse"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 474))
+
+    # def test_bin_op_real_475(self):
+    #     inp = """
+    #     procedure main();
+    #     var a, b: real;
+    #     begin
+    #     a := 69;
+    #     b := 96;
+    #     putFloat(a + b);
+    #     putFloat(a - b);
+    #     putFloat(a * b);
+    #     putFloat(a/b);
+    #     putBool(a < b);
+    #     putBool(a > b);
+    #     putBool(a <= b);
+    #     putBool(a >= b);
+    #     putBool(a <> b);
+    #     putBool(a = b);
+    #     end
+    #     """
+    #     exp = "165.0-27.06624.00.71875truefalsetruefalsetruefalse"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 475))
+
+    # def test_476(self):
+    #     inp = """
+    #     procedure main();
+    #     var a: integer;
+    #         b: array [1 .. 3] of integer;
+    #         x: integer;
+    #     begin
+    #         a := b[3] := foo()[3] := x := 1;
+    #         putInt(a);
+    #         putInt(b[3]);
+    #         putInt(foo()[3]);
+    #         putInt(x);
+    #         return;
+    #     end
+
+    #     function foo(): array [1 .. 3] of integer;
+    #     var arr: array [1 .. 3] of integer;
+    #     begin
+    #         return arr;
+    #     end
+    #     """
+
+    #     exp = "0001"
+    #     self.assertTrue(TestCodeGen.test(inp, exp, 476))
+
+    def test_assign_477(self):
         inp = """
         procedure main();
+        var a: integer;
+            b: array [1 .. 3] of integer;
+            x: integer;
         begin
-            putBool(true or else (1 = (1/0)));
+            foo()[3] := a := b[3] := x := 1;
+            putInt(a);
+            putInt(b[3]);
+            putInt(foo()[3]);
+            putInt(x);
+            return;
+        end
+
+        function foo(): array [1 .. 3] of integer;
+        var arr: array [1 .. 3] of integer;
+        begin
+            return arr;
         end
         """
-        exp = "true"
-        self.assertTrue(TestCodeGen.test(inp, exp, 467))
+
+        exp = "1101"
+        self.assertTrue(TestCodeGen.test(inp, exp, 477))
+
+    
+
+
+
 
     
 
