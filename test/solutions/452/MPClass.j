@@ -78,6 +78,7 @@ Label6:
 	iconst_0
 Label7:
 	invokestatic io/putBoolLn(Z)V
+	goto Label1
 Label1:
 	return
 .limit stack 6

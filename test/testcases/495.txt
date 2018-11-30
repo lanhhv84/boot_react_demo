@@ -1,0 +1,20 @@
+
+        procedure main();
+        var a, b: integer;
+        begin
+            a := 10;
+            while (a > 0) do
+            begin
+                b := 10;
+                while (b > 0) do
+                begin 
+                    if (b = 5) then
+                        break;
+                    b := b - 1;
+                    putInt(b);
+                end 
+                a := a - 1;
+                putInt(a);
+            end
+        end
+        

@@ -94,6 +94,7 @@ Label17:
 	iconst_1
 Label18:
 	invokestatic io/putBoolLn(Z)V
+	goto Label1
 Label1:
 	return
 .limit stack 18

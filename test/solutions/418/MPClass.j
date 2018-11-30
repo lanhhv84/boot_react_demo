@@ -27,6 +27,7 @@ Label1:
 Label0:
 	invokestatic MPClass/abc()I
 	invokestatic io/putInt(I)V
+	goto Label1
 Label1:
 	return
 .limit stack 1

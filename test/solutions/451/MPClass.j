@@ -42,6 +42,7 @@ Label0:
 	ineg
 	iaload
 	invokestatic io/putInt(I)V
+	goto Label1
 Label1:
 	return
 .limit stack 9

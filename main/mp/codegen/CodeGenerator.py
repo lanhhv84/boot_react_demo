@@ -611,7 +611,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
                     d = self.emit.emitI2F(frame)
             return ans[0] + d + self.emit.emitGOTO(str(frame.endLabel[0]), frame)
         else:
-            return ''
+            return self.emit.emitGOTO(str(frame.endLabel[0]), frame)
 
     def visitCallExpr(self, ast, o):
         call = self.visitCall(ast, o)
