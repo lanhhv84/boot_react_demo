@@ -1,8 +1,0 @@
-
-        procedure main();
-        var b: array[0 .. 10] of integer;
-        begin
-            b[0] := 1 + 1*1;
-            putInt(b[0]);
-        end
-        

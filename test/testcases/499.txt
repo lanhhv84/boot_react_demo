@@ -1,8 +1,0 @@
-
-        procedure main();
-        var i : integer;
-        begin
-        for i := 10 downto 0 do 
-            putInt(i);
-        end
-        

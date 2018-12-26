@@ -1,8 +1,0 @@
-
-        procedure main();
-        var a, b: integer;
-        begin
-            b := 9;
-            putInt(b mod 5);
-        end
-        

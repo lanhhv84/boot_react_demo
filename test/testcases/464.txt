@@ -1,8 +1,0 @@
-
-        procedure main();
-        begin
-            putFloatLn(----------3.14e10);
-            putIntLn(0 div 1);
-            putFloat(-0 / -1);
-        end
-		
